@@ -134,7 +134,10 @@ export default function ChatMessage(props: ChatMessageProps) {
                         ).map((p: RagDocument, i) => {
                           return {
                             id: `${i}`,
-                            label: p.metadata.path.split("/").at(-1),
+                            label:
+                              p.metadata.path?.split("/").at(-1) ??
+                              p.metadata.title ??
+                              p.metadata.document_id.slice(-8),
                             href: p.metadata.path,
                             content: (
                               <>
